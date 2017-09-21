@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ListItem, ListItemIcon, ListItemText } from 'material-ui';
-import { CheckCircle, RadioButtonChecked, RadioButtonUnchecked } from 'material-ui-icons';
+import { CheckCircle, RadioButtonUnchecked } from 'material-ui-icons';
 
 const Todo = ({ onClick, completed, text }) => (
   <ListItem

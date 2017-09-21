@@ -8,6 +8,8 @@ import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
 
+import LoginButton from '../containers/LoginButton';
+
 const styles = theme => ({
   root: {
     marginTop: theme.spacing.unit * 3,
@@ -34,7 +36,7 @@ function ButtonAppBar(props) {
           <Typography type="title" color="inherit" className={classes.flex}>
             Chama TodoApp
           </Typography>
-          <Button color="contrast">Login</Button>
+          <LoginButton />
         </Toolbar>
       </AppBar>
     </div>
