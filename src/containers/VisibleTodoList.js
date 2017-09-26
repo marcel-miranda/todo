@@ -1,13 +1,27 @@
-import { connect } from 'react-redux'
-import { toggleTodo } from '../actions'
-import TodoList from '../components/TodoList'
+import { connect } from 'react-redux';
+import { ascendTodo, removeTodo } from '../actions';
+import TodoList from '../components/TodoList';
 
 const getVisibleTodos = (todos, filter) => {
   switch (filter) {
     case 'SHOW_COMPLETED':
-    return todos.filter(t => t.completed);
+      return Object.keys(todos)
+        .filter(key => todos[key].completed)
+        .reduce((visibleTodos, key) => {
+          return {
+            ...visibleTodos,
+            [key]: todos[key],
+          }
+        }, {});
     case 'SHOW_ACTIVE':
-    return todos.filter(t => !t.completed);
+      return Object.keys(todos)
+        .filter(key => todos[key].completed)
+        .reduce((visibleTodos, key) => {
+          return {
+            ...visibleTodos,
+            [key]: todos[key],
+          }
+        }, {});
     case 'SHOW_ALL':
     default:
       return todos;
@@ -22,8 +36,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onTodoClick: id => {
-      dispatch(toggleTodo(id));
+    onTodoClick: key => {
+      dispatch(removeTodo(key));
+    },
+    ascendTodo: key => {
+      dispatch(ascendTodo(key));
     }
   }
 }

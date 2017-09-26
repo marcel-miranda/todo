@@ -18,10 +18,6 @@ const styles = theme => ({
   flex: {
     flex: 1,
   },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
-  },
 });
 
 function ButtonAppBar(props) {
@@ -30,9 +26,6 @@ function ButtonAppBar(props) {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton className={classes.menuButton} color="contrast" aria-label="Menu">
-            <MenuIcon />
-          </IconButton>
           <Typography type="title" color="inherit" className={classes.flex}>
             Chama TodoApp
           </Typography>

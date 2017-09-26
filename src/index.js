@@ -8,7 +8,7 @@ import { applyMiddleware, createStore } from 'redux';
 import todoApp from './reducers';
 import './index.css';
 import 'firebaseui/dist/firebaseui.css';
-import App from './components/App';
+import App from './containers/App';
 import registerServiceWorker from './registerServiceWorker';
 
 const middleware = applyMiddleware(

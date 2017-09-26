@@ -4,26 +4,29 @@ import { Avatar, Button } from 'material-ui';
 import { withStyles } from 'material-ui/styles';
 import './LoginButton.css';
 
-const LoginButton = ({ onClick, user }) => {
-  if (user.loggedIn) {
+const LoginButton = ({ logIn, logOut, user }) => {
+  if (user.uid) {
+    const { displayName, photoURL } = user;
+
     return (
       <div>
-        <Button color="contrast" onClick={onClick}>
-          <Avatar src={user.user.photoURL} className='LoginButtonAvatar' />
-          {user.user.displayName}
+        <Button color="contrast" onClick={logOut}>
+          <Avatar src={photoURL} className='LoginButtonAvatar' />
+          Log Out
         </Button>
       </div>
     );
   }
 
   return (
-    <Button color="contrast" onClick={onClick}>Log In</Button>
+    <Button color="contrast" onClick={logIn}>Log In</Button>
   );
 };
 
 LoginButton.propTypes = {
+  logIn: PropTypes.func.isRequired,
+  logOut: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
-  onClick: PropTypes.func.isRequired
 }
 
 export default LoginButton;

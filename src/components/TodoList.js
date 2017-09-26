@@ -1,25 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { List } from 'material-ui';
+import { List, Paper } from 'material-ui';
 import Todo from './Todo';
+import sortTodos from '../lib/sortTodos';
 
-const TodoList = ({ todos, onTodoClick }) => (
+const TodoList = ({ todos, ascendTodo, onTodoClick }) => (
   <List>
-    {todos.map(todo => (
-      <Todo key={todo.id} {...todo} onClick={() => onTodoClick(todo.id)} />
+    {sortTodos(todos).map(todo => (
+      <Todo
+        completed={todo.completed}
+        expired={todo.expired}
+        key={todo.key}
+        text={todo.text}
+        onClick={() => onTodoClick(todo.key)}
+        onUpClick={() => ascendTodo(todo.key)}
+      />
     ))}
   </List>
-)
-
-TodoList.propTypes = {
-  todos: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      completed: PropTypes.bool.isRequired,
-      text: PropTypes.string.isRequired
-    }).isRequired
-  ).isRequired,
-  onTodoClick: PropTypes.func.isRequired
-}
+);
 
 export default TodoList;

@@ -1,18 +1,27 @@
 export default (state = {
-  credential: undefined,
+  initialized: false,
   user: undefined,
-  loggedIn: false,
 }, action) => {
   switch (action.type) {
+    case 'INITIALIZE':
+      return {
+        initialized: true,
+      }
     case 'LOGIN_SUCCESS':
       return {
-        loggedIn: true,
+        ...state,
         ...action.user,
       };
     case 'LOGIN_FAIL':
       return {
-        loggedIn: false,
+        ...state,
       };
+    case 'LOGOUT': {
+      return {
+        ...state,
+        user: undefined,
+      }
+    }
     default:
       return state;
   }

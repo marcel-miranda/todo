@@ -1,21 +1,31 @@
-export default (state = [], action) => {
+export default (state = {}, action) => {
   switch (action.type) {
+    case 'FETCH_TODOS':
+      return action.todos;
     case 'ADD_TODO':
-      return [
+      return {
         ...state,
-        {
-          id: action.id,
-          text: action.text,
-          completed: false,
+        [action.key]: action.todo,
+      };
+    case 'CHANGE_TODO':
+      return {
+        ...state,
+        [action.key]: action.todo,
+      }
+    case 'EXPIRE_TODO':
+      return {
+        ...state,
+        [action.key]: {
+          ...state[action.key],
+          expired: true,
         }
-      ];
-
-    case 'TOGGLE_TODO':
-      return state.map(todo =>
-        (todo.id === action.id)
-          ? { ...todo, completed: !todo.completed }
-          : todo
-      );
+      }
+    case 'REMOVE_TODO':
+      const newState = {
+        ...state,
+      };
+      delete newState[action.key];
+      return newState;
     default:
       return state;
   }
